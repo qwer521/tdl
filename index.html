@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+..
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todos</title>
+</head>
+
+<body>
+    <h1>Todos</h1>
+    <br>
+    <div id="lis">
+        <div id="control">
+            <input />
+            <button id="but">Add</button>
+        </div>
+        <ul>
+            <li>676</li>
+        </ul>
+    </div>
+
+    <style>
+        body {
+            background-color: rgb(209, 216, 223);
+        }
+
+        h1 {
+            margin: auto;
+            color: darkgray;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: block;
+            font-size: 10vh;
+        }
+
+        #control {
+            width: 100%;
+            height: 8%;
+            position: absolute;
+            display: block;
+            top: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #lis {
+            width: 75%;
+            height: 85%;
+            position: absolute;
+            display: block;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #control>* {
+            float: left;
+            height: 100%;
+            border: none;
+        }
+
+        button {
+            position: relative;
+            width: 25%;
+            font-size: larger;
+        }
+
+        input {
+            position: relative;
+            padding: 0px 10px;
+            width: 75%;
+            font-size: larger;
+            float: left;
+        }
+
+        ul {
+            margin-block-start: 0 !important;
+            margin-inline-start: 0 !important;
+            margin-block-end: 0 !important;
+            margin-inline-end: 0 !important;
+            width: 100%;
+            height: 50%;
+            float: left;
+            border: none;
+            position: absolute;
+            display: block;
+            top: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            padding: 0;
+            list-style: none;
+            margin: none;
+            text-align: left;
+            padding-left: 3%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-color: rgb(236, 225, 225);
+            height: 10%;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-git.min.js"></script>
+    <script>
+        var button = $("#but")
+        function add() {
+            var get = $("input").val();
+            $("ul").append(`<li>${get}</li>`);
+            $("input").val("");
+        }
+        button.on("click", (e) => {
+            add();
+        });
+        $("input").on("keypress", (e) => {
+            console.log("in")
+            if(e.keyCode == 13)
+                add();
+        });
+    </script>
+</body>
+
+</html>
