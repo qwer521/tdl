@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-..
+
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -12,16 +12,25 @@
 <body>
     <h1>Todos</h1>
     <br>
+    <button id=sel>V</button>
     <div id="lis">
         <div id="control">
             <input />
             <button id="but">Add</button>
         </div>
         <ul>
-            <li>676</li>
+            <li class="123">676
+                <button class=" dest">
+                    &times;
+                </button>
+            </li>
         </ul>
+        
     </div>
-
+    <br>
+    <button id="cle">clear</button>
+    <br><br><br>
+    <p id="lef">left</p>
     <style>
         body {
             background-color: rgb(209, 216, 223);
@@ -36,7 +45,6 @@
             display: block;
             font-size: 10vh;
         }
-
         #control {
             width: 100%;
             height: 8%;
@@ -70,6 +78,7 @@
         }
 
         input {
+            padding-right:100px;
             position: relative;
             padding: 0px 10px;
             width: 75%;
@@ -85,9 +94,9 @@
             width: 100%;
             height: 50%;
             float: left;
-            border: none;
             position: absolute;
             display: block;
+            border: none;
             top: 8%;
             left: 50%;
             transform: translateX(-50%);
@@ -96,32 +105,116 @@
         }
 
         li {
+            display: block;
+            position: relative;
+            width: 100%;
             padding: 0;
             list-style: none;
             margin: none;
             text-align: left;
             padding-left: 3%;
-            padding-top: 20px;
-            padding-bottom: 20px;
+            padding-top: 10px;
+            padding-bottom: 30px;
             background-color: rgb(236, 225, 225);
             height: 10%;
         }
+        #sel{
+            position: absolute;
+            outline: none !important;
+            outline-color: initial !important;
+            outline-style: none !important;
+            outline-width: initial !important;
+            float: left;
+        }
+        .dest {
+            position: absolute;
+            outline: none !important;
+            outline-color: initial !important;
+            outline-style: none !important;
+            outline-width: initial !important;
+            border: none;
+            float: right;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-60%);
+            width: 40px;
+            height: 40px;
+            margin: auto 0;
+            font-size: 30px;
+            padding: 0px;
+            background-color: transparent;
+            color: #cc9a9a;
+            margin-bottom: 11px;
+            transition: color 0.2s ease-out;
+            cursor: pointer;
+        }
+        .del{
+            text-decoration: line-through;
+            transition: background 1s;
+            background-color: rgb(148, 134, 134);
+        }
     </style>
     <script src="http://code.jquery.com/jquery-git.min.js"></script>
+    <script src="/bootstrap.js"></script>
     <script>
         var button = $("#but")
+        var lisi = $(".123").length
+        $("#lef").prepend(lisi)
         function add() {
             var get = $("input").val();
-            $("ul").append(`<li>${get}</li>`);
-            $("input").val("");
+            if (get[0] !== " " && get.length) {
+                $("ul").append(`<li class='123'>${get}<button class=" dest">&times;</button></li>`);
+                $("input").val("");
+            }
+            lisi++;
+            $("#lef").text("left")
+            $("#lef").prepend(lisi)
         }
         button.on("click", (e) => {
             add();
         });
         $("input").on("keypress", (e) => {
             console.log("in")
-            if(e.keyCode == 13)
+            if (e.keyCode == 13)
                 add();
+        });
+
+        $("body").on("click", '#sel', (e) => {
+            var flag=0;
+            $(".123").each(function(){
+                if ($(this).hasClass("del")) {
+                }
+                else{
+                    flag++;
+                }
+            })
+            if (!flag) {
+                $(".123").removeClass("del");
+            }
+            else{
+                $(".123").addClass("del");
+            }
+        });
+        $("body").on("click", '#cle', (e) => {
+            $(".123").each(function(){
+                $(this).remove();
+            })
+            lisi=0
+            $("#lef").text("left")
+            $("#lef").prepend(lisi)
+        });
+        $("body").on("click", '.123', (e) => {
+            if ($(e.target).hasClass("del")) {
+                $(e.target).removeClass("del");
+            }
+            else{
+                $(e.target).addClass("del");
+            }
+        });
+        $("body").on("click", '.123', (e) => {
+            if ($(e.target).hasClass("dest")) {
+                $(e.target).parent().remove();
+            }
         });
     </script>
 </body>
