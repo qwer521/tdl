@@ -12,30 +12,50 @@
 <body>
     <h1>Todos</h1>
     <br>
-    <button id=sel>V</button>
     <div id="lis">
         <div id="control">
+            <button id="sel">全選</button>
             <input />
             <button id="but">Add</button>
         </div>
         <ul>
-            <li class="123">676
+            <li class="123">something
                 <button class=" dest">
                     &times;
                 </button>
             </li>
+            
         </ul>
-        
+            <button id="cle">clear</button>
+            <p id="lef">left</p>
     </div>
+    
     <br>
-    <button id="cle">clear</button>
-    <br><br><br>
-    <p id="lef">left</p>
     <style>
         body {
             background-color: rgb(209, 216, 223);
         }
-
+        #lef{
+            font-size: larger;
+        }
+        .bot{
+            display: block;
+            position: relative;
+            width: 100%;
+            padding: 0px;
+            list-style: none;
+            margin: none;
+            text-align: left;
+            background-color: rgb(236, 225, 225);
+            height: 10%;
+        }
+        #cle{
+            border: none;
+            display: inline;
+            left: 0%;
+            width: 13%;
+            position: relative;
+        }
         h1 {
             margin: auto;
             color: darkgray;
@@ -48,7 +68,7 @@
         #control {
             width: 100%;
             height: 8%;
-            position: absolute;
+            position: relative;
             display: block;
             top: 0%;
             left: 50%;
@@ -57,31 +77,31 @@
 
         #lis {
             width: 75%;
-            height: 85%;
+            height: 80%;
             position: absolute;
             display: block;
-            top: 15%;
+            top: 20%;
             left: 50%;
             transform: translateX(-50%);
         }
 
         #control>* {
-            float: left;
             height: 100%;
             border: none;
         }
 
         button {
             position: relative;
-            width: 25%;
+            width: 20%;
             font-size: larger;
+            float: left;
         }
 
         input {
             padding-right:100px;
             position: relative;
             padding: 0px 10px;
-            width: 75%;
+            width: 60%;
             font-size: larger;
             float: left;
         }
@@ -92,39 +112,33 @@
             margin-block-end: 0 !important;
             margin-inline-end: 0 !important;
             width: 100%;
-            height: 50%;
             float: left;
-            position: absolute;
-            display: block;
+            position: relative;
             border: none;
-            top: 8%;
             left: 50%;
             transform: translateX(-50%);
-            margin: 0;
-            padding: 0;
+            margin: 0px;
+            padding: 0px;
         }
 
         li {
             display: block;
             position: relative;
             width: 100%;
-            padding: 0;
+            padding: 0px;
             list-style: none;
             margin: none;
             text-align: left;
             padding-left: 3%;
             padding-top: 10px;
-            padding-bottom: 30px;
+            padding-bottom: 10px;
             background-color: rgb(236, 225, 225);
             height: 10%;
         }
-        #sel{
+        .sel{
             position: absolute;
-            outline: none !important;
-            outline-color: initial !important;
-            outline-style: none !important;
-            outline-width: initial !important;
             float: left;
+            width: 2%;
         }
         .dest {
             position: absolute;
@@ -165,8 +179,9 @@
             if (get[0] !== " " && get.length) {
                 $("ul").append(`<li class='123'>${get}<button class=" dest">&times;</button></li>`);
                 $("input").val("");
+                lisi++;
             }
-            lisi++;
+            
             $("#lef").text("left")
             $("#lef").prepend(lisi)
         }
@@ -200,8 +215,8 @@
                 $(this).remove();
             })
             lisi=0
-            $("#lef").text("left")
-            $("#lef").prepend(lisi)
+            $("#lef").text("left");
+            $("#lef").prepend(lisi);
         });
         $("body").on("click", '.123', (e) => {
             if ($(e.target).hasClass("del")) {
@@ -213,7 +228,12 @@
         });
         $("body").on("click", '.123', (e) => {
             if ($(e.target).hasClass("dest")) {
+                console.log(1);
                 $(e.target).parent().remove();
+                lisi--;
+                
+            $("#lef").text("left");
+            $("#lef").prepend(lisi)
             }
         });
     </script>
